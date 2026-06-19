@@ -1,7 +1,11 @@
 import streamlit as st
 import chromadb
+import os
 
-chroma_client = chromadb.Client()
+os.makedirs("./chroma_db", exist_ok=True)
+
+#chroma_client = chromadb.Client()
+chroma_client = chromadb.PersistentClient(path="./chroma_db")
 collection = chroma_client.get_or_create_collection(name="personal_collection2")
 
 collection.add(
